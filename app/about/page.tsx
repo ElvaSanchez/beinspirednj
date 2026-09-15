@@ -5,7 +5,7 @@ import { LeadershipCards } from "@/components/LeadershipCards";
 import { copy } from "@/lib/content";
 export const metadata = { title: "About", description: "Our story, mission, values, and 2024–2027 impact goals. Discover how Be Inspired NJ turns inspiration into opportunity for women." };
 export default function About() { return <>
-  <section className="about-hero dark"><div className="container"><p className="eyebrow">Our purpose. Our people. Our possibility.</p><div className="mosaic">{[1,2,3,4,5,6].map(i => <PlaceholderImage id={`about/mosaic-${i}`} key={i}/>)}</div><div className="center"><h1>Where Purpose Meets Possibility</h1><Copy name="purpose"/></div></div></section>
+  <section className="about-hero dark"><div className="container"><p className="eyebrow">Our purpose. Our people. Our possibility.</p><div className="mosaic">{[1,2,3,4,5,6].map(i => <PlaceholderImage id={`about/mosaic-${i}`} key={i} loading="eager" sizes="(max-width: 767px) calc((100vw - 48px) / 2), (max-width: 1190px) calc((100vw - 88px) / 3), 386px"/>)}</div><div className="center"><h1>Where Purpose Meets Possibility</h1><Copy name="purpose"/></div></div></section>
   <Section><div className="editorial"><Heading eyebrow="Our Story" title="Inspiration can open the door."/><Copy name="story"/></div></Section>
   <Section tone="sand"><div className="editorial"><Heading eyebrow="Our Approach" title="Your future. Defined by you."/><Copy name="approach"/></div></Section>
   <Section><Heading title="What We Believe"/><div className="beliefs">{copy.beliefs.map((text, i) => <p key={text}><span>0{i+1}</span>{text}</p>)}</div></Section>
