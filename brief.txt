@@ -1,0 +1,894 @@
+﻿ROLE
+You are a senior product designer + staff frontend engineer. Build a complete, production-quality multi-page website for Be Inspired NJ, a New Jersey 501(c)(3) nonprofit that empowers women through education, mentorship, leadership development, financial wellness, entrepreneurship, and community.
+This is an end-to-end rebuild, not a sketch. Ship a working app: routing, shared layout, every page, every section, every form, every image slot, responsive behavior, accessibility, and polished professional design.
+Do not clone the original GoDaddy builder pixel-for-pixel in a cheap way. Recreate the same information architecture, copy, and photography-forward nonprofit aesthetic, then elevate it into something clearer, more unique, and more professional — still unmistakably Be Inspired NJ.
+SOURCE OF TRUTH
+Live site captured September 2026: https://beinspirednj.org/
+Preserve the organization’s voice: warm, dignified, opportunity-focused, never salesy or gimmicky. Women are the audience. Inspiration is paired with access and action.
+Lightly correct obvious typos without changing meaning (examples: “Five Sings” → “Five Signs”; “Your Support Create” → “Your Support Creates”; “Help Us Inspired” → “Help Us Inspire”; “member of out team” → “our team”; “Nichols” not “Nicholas”; always use info@beinspirednj.com, never the misspelled info@beingspirednj.com). Keep original headlines, body copy, names, dates, ticket prices, and program language.
+NON-NEGOTIABLE CONSTRAINTS
+Images are placeholders only. Do not download, hotlink, generate, or embed the original photos. Reserve the exact space for every image using labeled placeholder blocks (aspect-ratio boxes with muted teal/charcoal fills, icon, and caption describing what photo belongs there). Leave a clear drop-in path (/public/images/...) so real assets can replace placeholders later.
+Logo is also a placeholder: a square/rect slot for the butterfly “Be Inspired NJ” mark (teal / violet / rose wings). Show wordmark text beside it until the real file is added.
+No GoDaddy branding, no Airo badge, no third-party chat widget, no fake payment processor, no recaptcha.
+Forms must work in the UI: client-side validation, success/error states, required fields. Submit can be a local success toast / confirmation screen (no backend required). Structure the code so a real endpoint can be wired later.
+Donation page: visual giving experience with suggested amounts. Do not process real payments. Primary CTA can open /contact?topic=donate or show “Donation processing coming soon — email info@beinspirednj.com”.
+Fully responsive: 375 / 768 / 1024 / 1280+. Sticky header. Mobile hamburger. Keyboard-accessible menus, FAQ accordion, and forms.
+Semantic HTML, skip-to-content, visible focus rings, color contrast AA, alt on every image slot, form labels associated with inputs.
+TypeScript strict. No any. Shared components. No duplicated header/footer markup.
+App must run locally with one command after install. All routes linked and working. No dead buttons.
+Keep the design professional, beautiful, and unique — editorial nonprofit, not generic Bootstrap, not overly “feminine clipart,” not dark-mode-only startup.
+TECH STACK (use this)
+Next.js (App Router) + TypeScript + Tailwind CSS
+next/font for Playfair Display (headings) and Source Sans 3 or Open Sans (body)
+Optional script accent for the hero wordmark overlay: Great Vibes or Allura (use sparingly)
+App Router file-based routes listed below
+Shared components/ for Header, Footer, Button, Section, PlaceholderImage, ProgramCard, ArticleCard, FAQ, forms
+Content in lib/content.ts (typed objects) so pages stay thin
+No CMS. No extra libraries unless truly needed (avoid animation libraries; CSS is enough)
+DESIGN SYSTEM
+Brand
+Be Inspired NJ is a women’s empowerment nonprofit in New Jersey. Visual feeling: sunlit, confident, community-centered, elevated. Photography of diverse women leading, learning, and gathering. Teal as the signature color. Serif headlines. Generous whitespace. Dark cinematic bands mixed with clean white editorial sections.
+Color tokens (Tailwind theme)
+--color-teal:        #0E7A78
+--color-teal-bright: #14908D
+--color-teal-deep:   #0A5C5A
+--color-ink:         #1B1B1B
+--color-ink-soft:    #3A3A3A
+--color-muted:       #5E5E5E
+--color-paper:       #FFFFFF
+--color-sand:        #F6F3EE
+--color-charcoal:    #141414
+--color-footer:      #111111
+Use teal for links, active nav underline, primary buttons, section bands, and heading accents. Charcoal/black full-bleed bands for inner-page heroes and photography grids. White/sand for reading sections. Do not use loud pink as a primary brand color; rose/violet may appear only as a subtle nod to the butterfly logo.
+Type
+H1: Playfair Display, 400/500, ~2.5–3.5rem, teal on light, teal or white on dark
+H2/H3: Playfair Display
+Body: sans, 16–18px, line-height 1.7, ink/muted
+Eyebrows / labels: sans uppercase tracking-wide, small
+Hero overlay title: script “Be Inspired NJ” over the hero placeholder, then a caps sans tagline
+UI patterns from the live site (elevate, don’t cheapen)
+Header: white, logo left, desktop nav centered-right. Teal links. Current page has a thin teal underline. Optional “Donate” can be a filled teal pill on desktop.
+Hero (home): large 16:9 (or ~1280×852) photo placeholder. Overlay centered:
+Script: Be Inspired NJ
+Caps: EMPOWERING WOMEN. STRENGTHENING COMMUNITIES. CREATING POSSIBILITIES.
+CTA band: full-width teal bar with two white rounded-full buttons: Explore Our Programs → /programs, Get Involved → /get-involved
+Who We Are: circular portrait placeholder (1:1) left, copy right
+Featured Programs: teal intro band, then charcoal section with a staggered 2-column grid:
+Row 1: image left / title+Learn More right (Mentorship)
+Row 2: title+Learn More left / image right (Leadership)
+Row 3: image left / title+Learn More right (Financial Wellness)
+Row 4: title+Learn More left / image right (Entrepreneurship)
+Landscape image slots ~2:1. Teal “Learn More” pills.
+Inner page heroes: charcoal full-bleed, Playfair teal title often flanked by thin horizontal rules, then a large photo placeholder
+About photo mosaic: 2×3 (or 3×2) photography grid on charcoal above “Where Purpose Meets Possibility”
+Footer: dark 3-column: org blurb + contact + socials; then compact sitemap row; copyright Copyright ©️ 2026 Be Inspired NJ — All Rights Reserved.
+Cookie banner: optional simple bottom-right card; teal “Accept”. Do not block the layout.
+Buttons: rounded-full, teal fill + white text, or white fill on teal bands. Hover: slightly brighter teal / subtle lift. Never default blue links.
+Layout
+Max content width ~1120–1200px
+Section vertical padding 72–96px desktop, 48–64px mobile
+Consistent container component
+SITE MAP (implement every route)
+Primary nav (exact labels):
+Home → /
+About → /about
+Programs → /programs
+Events → /events
+Inspiration & Resources → /inspiration-resources
+Get Involved → /get-involved
+Donate → /donate
+Secondary / linked pages (in nav via CTAs, not necessarily top nav):
+Contact → /contact
+Our Leadership / Meet the Founder → /our-leadership
+Board: Tatiana Lopez → /board/tatiana-lopez
+Board: Andreau “Angie” Todd → /board/angie-todd
+Articles:
+/inspiration/ready-to-lead
+/inspiration/your-next-chapter
+/inspiration/financial-wellness
+/inspiration/power-of-community
+/inspiration/starting-a-business
+/inspiration/protecting-your-peace
+Redirects / aliases (optional but good): /get-involved-1 → /get-involved, /inspiration-%26-resources and /inspiration-&-resources → /inspiration-resources, /contact-us → /contact, /tatiana-bio → /board/tatiana-lopez, /angie-bio → /board/angie-todd, /ready-to-lead etc. → corresponding article routes.
+404 page: branded, link home.
+GLOBAL COMPONENTS
+Header
+Logo placeholder (~88×70) + visually hidden or adjacent “Be Inspired NJ”
+Nav links as listed
+Mobile: hamburger, full-screen or slide-down panel, focus trap, Escape to close
+Sticky, subtle shadow on scroll
+Footer (every page)
+Column 1 — Be Inspired NJ
+Empowering women through education, mentorship, leadership development, and community support.
+Column 2 — Contact
+New Jersey
+info@beinspirednj.com (mailto)
+Note in code comments: legal mail/EIN on file as Paterson, NJ (676 E 25th St) — do not invent a public street address in the UI unless you label it as mailing address. Public site currently shows “New Jersey” only. Keep “New Jersey”.
+Column 3 — Connect With Us
+Facebook (href # or aria-disabled placeholder)
+Instagram (placeholder)
+LinkedIn → https://www.linkedin.com/in/beinspirednj
+Then a text sitemap of all primary pages.
+No “Powered by GoDaddy”.
+Button
+Variants: primary, secondary (white), ghost. Always a real <Link> or <button>.
+PlaceholderImage
+Props: aspect (e.g. "16/9", "1/1", "2/1", "3/2"), label, alt, className, optional shape (rect | circle).
+Render a non-broken visual: soft gradient (teal→charcoal), centered camera icon, 1–2 line caption of the intended photo. Must hold layout height.
+Newsletter
+Email input + “Sign up”. Copy:
+Stay Connected
+Get inspiring stories, program updates, upcoming events, volunteer opportunities, and ways to make a difference.
+Success: “Thank you for subscribing.” Validate email.
+PAGE-BY-PAGE SPEC
+Use the copy below verbatim (after light typo fixes). Build every section in order.
+1) HOME /
+Hero
+Placeholder IMAGE home/hero — 16:9, min-height ~70vh.
+Intended photo: four diverse women outdoors in golden hour, laughing, arms around each other, one fist raised in joy.
+Overlay:
+Script: Be Inspired NJ
+Tagline: EMPOWERING WOMEN. STRENGTHENING COMMUNITIES. CREATING POSSIBILITIES.
+Intro (white, centered)
+Every woman deserves access to opportunity.
+Be Inspired NJ connects women with education, mentorship, leadership development, financial knowledge, and meaningful community relationships that help turn possibility into progress.
+CTA band (teal)
+Buttons: Explore Our Programs → /programs · Get Involved → /get-involved
+Who We Are
+Layout: circular IMAGE home/who-we-are 1:1 (~320–400px) — woman with natural hair, navy blazer, presenting to colleagues.
+Right copy:
+Who We Are
+Inspiration can open the door. Opportunity creates lasting change.
+Be Inspired NJ is a nonprofit organization dedicated to empowering women through education, mentorship, leadership development, financial wellness, and meaningful community connections.
+We create spaces where women can learn, grow, build confidence, explore new possibilities, and take intentional steps toward the future they envision.
+We believe inspiration becomes powerful when it is paired with opportunity.
+Featured Programs
+Teal band:
+Featured Programs
+Programs That Turn Inspiration Into Action
+Our programs are designed to provide women with practical tools, meaningful relationships, and access to resources that support personal, professional, and financial growth.
+Charcoal staggered grid (each “Learn More” → /programs#<id>):
+ID
+Title
+Image slot
+Intended photo
+mentorship
+Mentorship & Personal Development
+home/program-mentorship 2:1
+two professional women in conversation
+leadership
+Leadership Development
+home/program-leadership 2:1
+woman presenting at a whiteboard to a small team
+financial
+Financial Wellness
+home/program-financial 2:1
+coins with a rising red ladder (growth metaphor)
+entrepreneurship
+Entrepreneurship & Small Business
+home/program-entrepreneurship 2:1
+smiling woman business owner in a plant shop, arms crossed
+“View All Programs” → /programs
+Why It Matters
+Teal or sand band.
+Why It Matters
+Creating Opportunities That Make a Lasting Difference
+Our goal is not simply to inspire women for a moment. We want to create opportunities that make a lasting difference.
+Through workshops, mentorship, education, partnerships, and community initiatives, Be Inspired NJ is working to reach women throughout New Jersey and build stronger pathways to personal and economic empowerment.
+Upcoming Event (white, centered)
+Upcoming Event
+The Legacy Collective Conference
+October 14–15, 2026
+Tioga Downs Resort & Conference Center — Nichols, New York
+Join leaders, professionals, entrepreneurs, and changemakers for two days of leadership development, meaningful conversations, networking, and connection.
+Button: View Event & Register → /events#legacy-collective
+Our Impact
+Charcoal. IMAGE home/impact 3:2 left — chalkboard with a question mark (curiosity / possibility). Copy right:
+Our Impact
+Impact Begins With Opportunity
+Every workshop, mentorship connection, partnership, and community event represents an opportunity for someone to learn something new, make an important connection, strengthen her confidence, or take another step toward a goal.
+Button: Explore Our Impact → /about#impact-goals (About has the 2024–2027 stats)
+Get Involved
+White or sand.
+Get Involved
+Be Part of the Change
+Change happens when communities come together.
+Whether you volunteer your time, share your expertise, become a community partner, attend a program, or make a financial contribution, there is a place for you at Be Inspired NJ.
+Together, we can create more opportunities for women to rise, lead, and thrive.
+CTAs: Get Involved → /get-involved · Donate → /donate
+Latest News
+Latest News
+Stay connected with the latest updates, community stories, events, and highlights from Be Inspired
+Two article teasers (link to full articles):
+Five Signs You May Be Ready to Lead → /inspiration/ready-to-lead
+Your Next Chapter Does Not Require Perfection → /inspiration/your-next-chapter
+Button: Explore More Inspiration & Resources → /inspiration-resources
+Stay Connected
+Newsletter form (as specified).
+2) ABOUT /about
+Charcoal hero mosaic: six IMAGE slots in a 3×2 grid (about/mosaic-1 … about/mosaic-6), each 4:3:
+Woman speaking on stage from behind, spotlight
+Woman with lanyard presenting in front of colorful slides
+Two women in conversation in lounge chairs, audience
+Woman with lanyard in front of giant “WELCOME!” wall
+Two women collaborating at a table with a laptop
+Woman in red blazer speaking on stage, smiling
+Then:
+Where Purpose Meets Possibility
+Be Inspired NJ was founded in 2024 with a simple belief:
+when women have access to the right support, resources, education, and opportunities, the impact extends far beyond one individual.
+We created Be Inspired NJ to help women recognize their potential and provide meaningful opportunities to turn that potential into progress.
+Our Story
+Be Inspired NJ was founded on a simple belief: inspiration can open the door, but opportunity creates lasting change.
+We are a New Jersey nonprofit organization committed to helping women build confidence, strengthen skills, expand their networks, and access resources that support personal, professional, and financial growth.
+Through education, mentorship, leadership development, financial wellness, entrepreneurship programs, and community partnerships, we create opportunities for women to move from inspiration to action.
+Our work is rooted in community. We believe that when women have access to knowledge, relationships, resources, and opportunities, the impact extends beyond the individual — strengthening families, workplaces, businesses, and communities.
+Our Approach
+We believe empowerment looks different for every woman.
+For one woman, it may mean developing the confidence to pursue a leadership opportunity.
+For another, it may mean understanding her finances, starting a business, finding a mentor, returning to school, or simply discovering what she wants her next chapter to look like.
+Our role is not to define success for women.
+Our role is to help create the opportunities, resources, knowledge, and connections that allow women to define it for themselves.
+What We Believe
+We believe in possibility over limitation.
+We believe education creates opportunity.
+We believe financial knowledge creates choices.
+We believe leadership can happen at every level.
+We believe community makes us stronger.
+And most importantly, we believe every woman deserves the opportunity to build a future she is proud of.
+Mission & Vision
+Two cards.
+Mission
+Be Inspired NJ empowers women by connecting them with education, mentorship, leadership development, financial knowledge, and community resources that create pathways to personal, professional, and economic growth.
+Vision
+We envision communities where every woman has access to the knowledge, relationships, resources, and opportunities she needs to confidently pursue her goals, strengthen her future, and create meaningful impact.
+Impact goals (id=impact-goals)
+Eyebrow: Present 2024–2027 impact goals
+Three stat cards:
+150+ Women Empowered
+10+ Community Partnerships
+$150K Funding Goal
+Footnote: First Annual Impact Report.
+Our Core Values
+Six cards with short icon or numeral:
+Empowerment — We encourage women to recognize their strengths, build confidence, and take meaningful steps toward their goals.
+Growth — We believe in continuous learning, personal development, and creating opportunities to move forward.
+Community — We create supportive spaces where women can connect, learn, and grow together.
+Leadership — We inspire women to lead with confidence, purpose, and integrity.
+Inclusion — We welcome diverse experiences, perspectives, and backgrounds and strive to create an environment where everyone feels respected and valued.
+Integrity — We are committed to serving our community with honesty, respect, responsibility, and transparency.
+Our Leadership
+Portrait placeholder about/founder 3:4 or 1:1.
+Dr. LaToya Pryce — Founder
+Be Inspired NJ is guided by leadership committed to creating opportunities for women, strengthening communities, and turning inspiration into meaningful action.
+Button: Meet the Founder → /our-leadership
+Board of Directors
+Be Inspired NJ's Board of Directors helps guide the organization's mission, growth, accountability, and long-term community impact.
+Two member cards with portrait placeholders about/tatiana and about/angie (1:1):
+Tatiana — Board Member — Learn More → /board/tatiana-lopez
+Andreau — Board Member — Read More → /board/angie-todd
+What Makes Us Different
+We believe women do not simply need encouragement.
+They need access. Access to knowledge. Access to mentors. Access to networks. Access to financial education. Access to leadership opportunities and sometimes, access to someone who believes in what is possible for them.
+Be Inspired NJ works to create those connections.
+3) PROGRAMS /programs
+Charcoal hero:
+Our Programs
+IMAGE programs/hero 16:9 — woman presenting to a diverse seated group, viewed from behind.
+Programs That Turn Inspiration Into Action
+Our programs are designed to meet women where they are while providing tools, education, relationships, and opportunities that help them move forward.
+Build four stacked program sections with id anchors, each with a landscape IMAGE (2:1) and a “View Program Details” that scrolls to that section or expands it.
+#mentorship Mentorship & Personal Development
+IMAGE programs/mentorship
+Meaningful relationships can change the direction of someone's life.
+Supportive experiences designed to help women strengthen confidence, clarify goals, navigate challenges, and create meaningful plans for personal and professional growth.
+Program Focus:
+Confidence building
+Goal setting
+Personal development
+Decision-making skills
+Mentorship and supportive relationships
+Personal and professional growth
+#leadership Leadership Development
+IMAGE programs/leadership
+Leadership is not limited to a job title.
+Programs and experiences that help women recognize their leadership potential, strengthen communication and decision-making skills, expand professional networks, and confidently pursue opportunities to lead.
+Program Focus:
+Leadership skills
+Communication
+Confidence
+Professional development
+Networking
+Preparing for leadership opportunities
+#financial Financial Wellness
+IMAGE programs/financial
+Financial knowledge creates choices.
+Practical financial education designed to increase knowledge and confidence around budgeting, saving, credit, borrowing, financial planning, and everyday decisions that influence long-term financial well-being.
+Program Focus:
+Budgeting
+Saving
+Understanding credit
+Managing debt
+Homeownership education
+Financial planning
+Building financial confidence
+#entrepreneurship Entrepreneurship & Small Business
+IMAGE programs/entrepreneurship
+Great ideas deserve the opportunity to grow.
+Education, mentorship, resources, and connections for women interested in starting, growing, or strengthening a business.
+Program Focus:
+Entrepreneurship education
+Small-business development
+Mentorship
+Business resources
+Networking
+Community connections
+Interested in Participating?
+Whether you are looking for support, interested in attending a program, or want to bring one of our programs to your organization, sponsor, or partner on a program, we would love to connect.
+Buttons: Get Involved · Partner With Us → /get-involved#partner · Contact Us → /contact
+Photos
+A simple gallery row of 3–4 IMAGE placeholders programs/gallery-1..n (4:3) — program/workshop photography.
+Voices From Our Community
+Placeholder testimonial cards (3): name/role “Coming soon” + quote slot. Copy:
+Real participant experiences and testimonials will be shared here as Be Inspired NJ continues to grow.
+Program inquiry form
+Interested in the Program?
+Drop us a line!
+Fields:
+Name *
+Email *
+Phone Number *
+Message
+Checkbox: Sign me up for program updates, events, and opportunities.
+Submit: Send Message
+Success copy: We'd love to hear from you — thank you. A member of our team will follow up.
+Sidebar:
+We'd love to hear from you
+Want to learn more about a Be Inspired NJ program or upcoming opportunity?
+Contact Be Inspired NJ
+Email: info@beinspirednj.com
+4) EVENTS /events
+Charcoal hero:
+Connect. Learn. Lead. Be Inspired.
+Be Inspired NJ creates and supports opportunities that bring people together to learn, connect, build meaningful relationships, and create lasting impact.
+Explore upcoming events, leadership experiences, workshops, and community opportunities.
+Wide banner IMAGE events/hero 5:1 or 21:9 — women smiling, clapping, community energy.
+Upcoming Event #legacy-collective
+IMAGE events/legacy-collective 16:9 — conference / leadership gathering.
+The Legacy Collective Conference
+Leadership That Leaves a Legacy
+October 14–15, 2026
+Tioga Downs Resort & Conference Center
+Nichols, New York
+The Legacy Collective Conference brings together leaders, professionals, entrepreneurs, innovators, and changemakers for meaningful conversations, leadership development, networking, and connection.
+Built around the belief that true leadership is measured by impact, the conference provides attendees with opportunities to learn from accomplished leaders, develop new relationships, gain practical leadership insights, and leave inspired to create meaningful change in their organizations and communities.
+Two Days. One Powerful Experience
+Schedule (accordion on mobile; timeline on desktop). Fix the live site’s “8:50 pm” breakfast end time to 8:50 am.
+October 14, 2026
+VIP Reception & Networking Experience — 6:00 pm – 8:00 pm — Tioga Downs Resort & Conference Center
+Connect with speakers, sponsors, and fellow attendees during an evening focused on conversation, networking, and relationship-building.
+October 15, 2026 — The Legacy Collective Conference — 8:00 am – 4:00 pm — Tioga Downs Resort & Conference Center
+A full day of leadership, learning, networking, and meaningful conversations designed to inspire lasting impact.
+Networking Breakfast — 8:00 am – 8:50 am — The Collective Lounge
+Opening Remarks & Welcome — 9:00 am – 9:15 am — Main Ballroom
+Conference hosts Amira Davis and Dr. LaToya Pryce welcome attendees and set the stage for a day of leadership, connection, and impact.
+Morning Keynote Address — 9:15 am – 10:00 am — Main Ballroom
+Hear from distinguished leaders as they share insights on leadership, innovation, and creating meaningful impact.
+(If later agenda items are unknown, show a tasteful “Full agenda to be announced” rather than inventing speakers.)
+Registration options
+Card grid:
+Ticket
+Price
+Includes
+Legacy Lunch Rate
+$80
+Full conference access, breakfast, and lunch. Available through September 15, 2026.
+VIP Conference Experience
+$150
+October 14 networking reception, full conference access, breakfast, and lunch.
+General Admission
+$100
+Full conference access, breakfast, and lunch.
+Student
+$50
+Full conference access, breakfast, and lunch.
+Community Access
+$75
+Limited discounted tickets with full conference access, breakfast, and lunch.
+Exhibitor/Vendor
+$225
+Exhibitor/vendor participation plus full conference access.
+Each card: “Reserve Your Seat” → /contact?topic=event&event=legacy-collective
+Register for an Upcoming Event
+Ready to join us? Explore upcoming Be Inspired NJ events and reserve your place.
+Repeat the conference summary + “Register for Upcoming Event” → contact with topic=event.
+Event Recaps
+Event Photos & Recap
+Following the conference, Be Inspired NJ will share highlights, photos, and reflections from the Legacy Collective Conference.
+Check back after October 15 for updates.
+Gallery placeholders events/recap-1..3 labeled “Photos coming after October 15, 2026”.
+Past Events & Community Impact
+Empty professional table/state: “Coming soon”
+Columns: Event | Date | Location | Brief description | Image
+IMAGE column uses small 16:9 placeholders when data exists.
+Event Photos
+Additional IMAGE row events/gallery-*
+5) INSPIRATION & RESOURCES /inspiration-resources
+Charcoal hero + wide IMAGE inspiration/hero 5:1
+Ideas, Resources & Stories to Help You Move Forward
+Growth often begins with the right information, encouragement, connection, or opportunity.
+Explore practical resources from Be Inspired NJ designed to support leadership, personal growth, financial wellness, entrepreneurship, and stronger communities.
+Learn. Grow. Be Inspired.
+Welcome to Inspiration & Resources—a space created to share ideas, encouragement, practical information, and resources that can help women move forward personally, professionally, financially, and within their communities.
+Explore leadership insights, personal development, financial wellness, entrepreneurship, community stories, and inspiration designed to help you take your next step.
+Article cards (each with IMAGE 16:9 + “View Full Article”)
+Five Signs You May Be Ready to Lead → /inspiration/ready-to-lead
+Leadership does not always begin with a title. You may already be demonstrating leadership through the way others trust you, your willingness to speak up, your desire to help others succeed, and your commitment to learning and growth.
+ Discover five signs that may show you are ready to take your next step as a leader.
+Your Next Chapter Does Not Require Perfection → /inspiration/your-next-chapter
+Waiting until everything feels perfect can keep us from moving forward.
+ Whether you are thinking about starting a business, applying for a leadership position, returning to school, improving your finances, or making yourself a priority again, progress can begin with one small step.
+ Discover why your next chapter does not require perfection—it simply requires a beginning.
+Financial Wellness Is About More Than Money → /inspiration/financial-wellness
+Financial wellness includes budgets, credit, savings, and debt—but it is also about having the knowledge and confidence to make informed financial choices.
+ Small, intentional decisions today can help create a stronger financial future tomorrow.
+ Learn how becoming more intentional about your finances can help you move toward your goals.
+The Power of Community → /inspiration/power-of-community
+Some things can be accomplished alone. Other possibilities appear when people come together.
+ Strong communities can connect us with mentors, resources, friendships, business relationships, encouragement, and opportunities we may not have discovered on our own.
+ Learn why meaningful relationships and community connections are at the heart of creating lasting change.
+Thinking About Starting a Business? Start With These Five Questions → /inspiration/starting-a-business
+A great business idea needs more than excitement—it needs a strong foundation.
+ Before creating a logo or announcing your launch, consider important questions about the problem you are solving, your customers, your costs, how people will find you, and your willingness to learn along the way.
+ Explore five questions that can help you turn an idea into a more thoughtful business plan.
+Protecting Your Peace While Pursuing Success → /inspiration/protecting-your-peace
+Ambition can be exciting, but it can also become exhausting.
+ Protecting your time, energy, and emotional capacity does not mean giving up on your goals. It means recognizing that success should not require constantly sacrificing your peace.
+ Explore how boundaries, intentional choices, and making room for yourself can help you pursue success without losing yourself in the process.
+Event Recaps
+Highlights, lessons, photos, and memorable moments from Be Inspired NJ programs and community events.
+Button: View Event Recaps → /events#recaps
+Volunteer Spotlights
+Meet the people who give their time, talents, and energy to support our mission and strengthen our community.
+Three cards: circular IMAGE + Name / Position placeholders (“Coming soon”).
+Partner Highlights
+Celebrate the organizations, businesses, and community leaders working with Be Inspired NJ to expand opportunities for women.
+Logo-row placeholders (3–6 gray boxes).
+Stay Inspired. Stay Connected.
+Receive new resources, community stories, program updates, upcoming events, and opportunities to get involved with Be Inspired NJ.
+Newsletter CTA → #subscribe newsletter.
+6) ARTICLE TEMPLATE (all 6 articles)
+Shared layout: charcoal thin hero, title, optional 16:9 IMAGE, readable ~680–720px measure, back link to /inspiration-resources, optional “Related” 3 cards.
+/inspiration/ready-to-lead
+Five Signs You May Be Ready to Lead
+IMAGE articles/ready-to-lead
+People naturally come to you. Whether they need advice, support, or help solving a problem, others trust your perspective.
+You see opportunities for improvement. Leaders do more than identify problems. They begin thinking about how things could be better.
+You are willing to speak up. Leadership requires courage—the willingness to share an idea, ask a difficult question, or advocate for someone else.
+You want others to succeed. Great leadership is not about being the smartest person in the room. It is about helping other people grow.
+You are ready to keep learning. You do not need to know everything before becoming a leader. In fact, some of the strongest leaders remain curious throughout their careers.
+If you recognize yourself in these signs, your next step may be closer than you think.
+Look for opportunities to:
+Lead a project
+Find a mentor
+Volunteer
+Join a community organization
+Attend a leadership program
+Have a conversation about your career goals
+Most importantly, stop waiting for someone else to declare you a leader.
+Leadership begins when you recognize your ability to positively influence what happens next.
+CTA: Explore leadership programs → /programs#leadership
+/inspiration/your-next-chapter
+Your Next Chapter Does Not Require Perfection
+IMAGE articles/next-chapter
+There is a common belief that we need to have everything figured out before taking the next step.
+The perfect plan. The right timing. Enough money. More confidence. One more credential.
+But growth rarely happens that way.
+Sometimes moving forward means taking one small step while you are still uncertain about what comes next.
+Maybe you have been thinking about:
+Starting a business
+Applying for a leadership position
+Returning to school
+Improving your finances
+Making yourself a priority again
+Whatever your goal may be, waiting until you feel completely ready can keep you standing still.
+That could mean:
+Making the phone call
+Attending the workshop
+Creating the budget
+Asking someone to mentor you
+Updating your résumé
+Researching your idea
+Finally saying yes to an opportunity that stretches you
+At Be Inspired NJ, we believe empowerment is not about having all the answers.
+It is about having access to resources, encouragement, education, and a community that reminds you of what is possible.
+Your next chapter does not require perfection.
+It requires a beginning.
+Ask yourself: What is one thing I can do this week that moves me closer to the life I want to create?
+Start there. One decision can create momentum—and momentum can change everything.
+/inspiration/financial-wellness
+Financial Wellness Is About More Than Money
+IMAGE articles/financial
+When we hear the words financial wellness, we often think about budgets, credit scores, savings accounts, and debt.
+Those things matter—but financial wellness is also about choices.
+It is having enough understanding and confidence to make informed decisions about your money.
+It is knowing what questions to ask before signing a loan agreement.
+It is understanding your credit report.
+It is preparing for an emergency instead of hoping one never happens.
+Most importantly, it is recognizing that where you are financially today does not have to determine where you will be tomorrow.
+Financial Wellness Starts With Small, Intentional Decisions
+Consider taking one of these steps:
+Review your spending
+Set a realistic savings goal
+Learn how credit works
+Ask questions about retirement
+Create a plan for reducing debt
+Begin saving a small amount consistently
+Even saving a small amount consistently can help build a habit that grows over time.
+Financial education should never make people feel embarrassed about what they do not know.
+At Be Inspired NJ, we believe education should make people feel empowered to ask questions, access resources, and make decisions that support their goals.
+You do not need to become a financial expert overnight.
+You simply need to become more intentional about your financial future.
+Ask yourself: What is one financial decision you could make today that your future self would thank you for?
+Then take the first step.
+CTA → /programs#financial
+/inspiration/power-of-community
+The Power of Community
+IMAGE articles/community
+There are things we can accomplish alone.
+And then there are things that become possible only when people come together.
+A strong community can introduce you to opportunities you did not know existed.
+It can connect you with:
+Mentors
+Resources
+Friendships
+Business relationships
+People who believe in your potential
+Sometimes those people believe in your potential even while you are still discovering it yourself.
+Community Is More Than Being Surrounded by People
+Community is about creating spaces where people feel:
+Seen
+Supported
+Valued
+Connected
+That is especially important when someone is navigating a new chapter.
+A young person may need someone to show them what is possible.
+An aspiring entrepreneur may need guidance from someone who has already started a business.
+A professional may need encouragement to pursue leadership.
+A family may need access to financial education or community resources.
+Sometimes one conversation or introduction can completely change someone's direction.
+That is why community is at the heart of Be Inspired NJ.
+We believe lasting impact happens when we:
+Share knowledge
+Create opportunities
+Build meaningful relationships
+Reach back to help someone else move forward
+You do not have to wait until you have achieved everything you want to achieve before making a difference.
+You can start now.
+Share what you know. Mentor someone. Support a local business. Volunteer. Make an introduction. Invite someone into a room they might not otherwise enter.
+When we create opportunities for one another, individual progress becomes community progress.
+And that is how lasting change begins.
+CTA → /get-involved
+/inspiration/starting-a-business
+Thinking About Starting a Business?
+IMAGE articles/business
+You have an idea.
+Maybe it has been sitting in your notebook for months.
+Maybe friends and family keep telling you: “You should turn this into a business.”
+Before creating the logo and announcing your launch, take some time to build the foundation.
+Start with five important questions.
+1. What problem am I solving?
+Successful businesses usually meet a need. Be clear about why someone would choose your product or service.
+2. Who is my customer?
+“Everyone” is rarely the answer. Identify who is most likely to need—and pay for—what you offer.
+3. What will it actually cost?
+Consider expenses such as:
+Registration
+Insurance
+Supplies
+Marketing
+Technology
+Inventory
+Professional services
+Other business expenses
+Understanding your costs is an important part of creating a sustainable business.
+4. How will people find me?
+A great idea still needs visibility. Think about:
+Social media
+Networking
+Referrals
+Community partnerships
+Other ways to reach potential customers
+5. Am I prepared to learn as I go?
+Entrepreneurship requires flexibility. Your first idea may change. Your pricing may evolve. Your customers may teach you something unexpected.
+Starting a business can be exciting, but excitement should be paired with preparation.
+You do not need to know everything before you begin.
+You do need to ask questions, seek resources, understand your numbers, and create a plan.
+Dream big—but build wisely.
+The strongest businesses are not simply launched. They are intentionally built.
+CTA → /programs#entrepreneurship
+/inspiration/protecting-your-peace
+Protecting Your Peace While Pursuing Success
+IMAGE articles/peace
+Ambition can be exciting. It can also be exhausting.
+We live in a culture that celebrates being busy. There is always:
+Another goal to reach
+Another meeting to attend
+Another email to answer
+Another opportunity to pursue
+Another person who needs something from us
+But success should not require constantly sacrificing your peace.
+Protecting Your Peace Does Not Mean You Lack Ambition
+It means recognizing that your time, energy, and emotional capacity are valuable resources.
+Start by paying attention to what consistently drains you.
+Ask yourself:
+Am I saying yes because I genuinely want to, or because I feel guilty saying no?
+Am I making room for rest, relationships, and the things that bring me joy?
+Am I pursuing opportunities that align with my goals or simply accepting everything that comes my way?
+Sometimes growth requires adding something new. Other times, growth requires letting something go.
+That might mean:
+Setting a boundary
+Having a difficult conversation
+Declining an invitation
+Spending an hour without your phone
+Taking a weekend without work
+These may seem like small decisions, but collectively they protect something incredibly important: you.
+Your goals matter. Your career matters. Your business matters. Your family and community matter. But you matter too.
+Give yourself permission to pursue success without losing yourself in the process.
+The goal is not simply to build a successful life.
+It is to build a life you actually have the energy and peace to enjoy.
+7) GET INVOLVED /get-involved
+Charcoal hero:
+Be Part of Something Meaningful
+IMAGE involved/hero 16:9 — two women in “VOLUNTEER” t-shirts outdoors, smiling, one handing a water bottle.
+Creating stronger communities takes all of us.
+There are many ways to support the mission of Be Inspired NJ—whether you have time to give, expertise to share, resources to contribute, or simply want to help us open more doors for women.
+Four pathway cards with icons + CTAs:
+Volunteer — Share your time, expertise, or talents → #volunteer
+Partner — Collaborate with us to expand community impact → #partner
+Donate — Help create more opportunities for women → /donate
+Attend — Participate in workshops, programs, and community events → /events
+#volunteer Volunteer
+Volunteer
+Your Time and Talents Can Make an Impact
+Volunteers play an important role in helping Be Inspired NJ serve women and strengthen our communities.
+Volunteers may support:
+Community events
+Workshops and programs
+Mentorship initiatives
+Event registration and guest assistance
+Outreach and community engagement
+Administrative and project support
+Whether you can volunteer once or become regularly involved, we welcome individuals who believe in our mission.
+Why Volunteer?
+Volunteering with Be Inspired NJ is an opportunity to give back, connect with your community, develop new skills, and help create meaningful opportunities for women to grow, lead, and thrive.
+Button: Become a Volunteer → #volunteer-form
+Share Your Expertise
+Your Knowledge Can Help Someone Move Forward
+Are you a professional, entrepreneur, educator, financial expert, community leader, or subject matter expert?
+Consider sharing your knowledge through:
+Workshops
+Panel discussions
+Mentorship opportunities
+Educational programs
+Button: Share Your Expertise → /contact?topic=expertise
+#partner Partner With Us
+Community partnership allows us to reach more women and create greater impact.
+We welcome partnership with:
+Corporations and local businesses
+Financial institutions
+Colleges and universities
+Schools
+Nonprofit organizations
+Community organizations
+Government and public agencies
+Partnership opportunities may include program collaboration, sponsorship, financial education, volunteerism, community events, mentorship, and resource sharing.
+Button: Contact to Partner With Us → /contact?topic=partner
+Volunteer Expectations
+Support the mission and values of Be Inspired NJ
+Treat participants, staff, and other volunteers with respect
+Communicate clearly and professionally
+Be dependable and arrive on time for scheduled activities
+Protect confidential or sensitive information
+Follow program, event, and safety guidelines
+#volunteer-form Volunteer Interest Form
+Fields (* required):
+Full Name *
+Email *
+Phone Number *
+Areas of Interest * (select multiple or textarea: Events, Workshops, Mentorship, Registration, Outreach, Admin)
+Availability *
+Why would you like to volunteer with Be Inspired NJ *
+Additional Comments
+Optional file attach (UI only)
+Checkbox: Sign me up for Be Inspired NJ updates, events, programs, and volunteer opportunities.
+Submit: Submit Volunteer Interest Form
+Thank You / What Happens Next (show after submit AND as static explainer)
+Submit your interest form — Tell us about your interests and availability.
+We’ll review your information — After you submit your form, a member of our team will review your information.
+Connect with our team — We’ll contact you about opportunities that match your interest and availability.
+We’re excited that you’re interested in volunteering with Be Inspired NJ. Have a question? Contact Be Inspired NJ at: info@beinspirednj.com
+FAQ (accordion)
+Frequently Asked Questions
+Do I need previous volunteer experience?
+No. Previous volunteer experience is not required for every opportunity. Requirements will vary depending on the volunteer role.
+How much time do I need to commit?
+Volunteer opportunities may range from one-time events to ongoing program support. Details will be provided for each opportunity.
+Can I volunteer for events only?
+Yes. Event-based opportunities may be available for individuals who cannot make an ongoing commitment.
+Will I receive training?
+Yes. Orientation or instructions will be provided when necessary for specific volunteer roles.
+Who can I contact with questions?
+Contact Be Inspired NJ for questions about volunteer opportunities, the application process, or ways to get involved.
+Can’t find the answer you’re looking for? Contact us and we’ll be happy to help. info@beinspirednj.com
+8) DONATE /donate
+Charcoal hero:
+IMAGE donate/hero 16:9 — open hands holding a red heart (care / giving).
+Help Turn Inspiration Into Opportunity
+Support Our Mission
+Your support helps Be Inspired NJ create educational programs, mentorship opportunities, leadership experiences, financial wellness initiatives, entrepreneurship resources, and community connections for women throughout New Jersey.
+Every contribution helps us expand access to the knowledge, relationships, and opportunities women need to build stronger futures.
+Why Your Support Matters
+Your Support Creates Possibilities
+A single opportunity can change someone's direction
+A mentor can build confidence
+A financial workshop can change how a woman manages her future
+A leadership experience can encourage someone to pursue an opportunity she once believed was beyond her reach
+A business workshop can help turn an idea into an income-producing venture
+Your support helps make those opportunities possible.
+Where Your Support Goes
+Donations to Be Inspired NJ go toward:
+Educational workshops and programs
+Leadership development
+Financial wellness initiatives
+Mentorship opportunities
+Entrepreneurship and small-business education
+Community events and outreach
+Program materials and participant resources
+Every Gift Matters
+Five giving cards (each with Donate CTA):
+Title
+Amount
+Description
+Provide Resources
+$25
+Help provide educational materials and resources for program participants.
+Support Participation
+$50
+Helps offset program costs and participant experiences.
+Strengthen a Program
+$100
+Supports educational, mentorship, leadership, or financial wellness programming.
+Expand Opportunity
+$250
+Helps expand workshops and provide additional resources.
+Invest in Community Impact
+$500
+Helps expand programming, partnerships, and community reach.
+Also: custom amount input (display only) + “Donate Today”.
+Help Us Inspire What's Possible
+When you give to Be Inspired NJ, you are doing more than supporting a program.
+You are investing in someone's possibility.
+Together, we can help more women access the knowledge, relationships, resources, and opportunities they need to build stronger futures.
+Note in the UI: Be Inspired NJ is a nonprofit. For donation processing, contact info@beinspirednj.com. (Do not invent tax language beyond what’s on the source site.)
+9) CONTACT /contact
+Contact Us
+We Would Love to Hear from You!
+Whether you are interested in our programs, volunteering, partnering with us, attending an event, or supporting our mission, we are here to connect and help.
+Two-column: form + details.
+Let's Connect
+Your Name *
+Your Email *
+Phone Number *
+How Can We Help? * (select: Programs, Volunteer, Share Expertise, Partnership, Event Registration, Donate, Other)
+Message
+Optional attach
+Checkbox: Sign me up for Be Inspired NJ updates, programs, events, stories, and opportunities to get involved.
+Submit: Send
+Honor query params ?topic= and ?event= to preselect the dropdown.
+Have a question or want to learn more about Be Inspired NJ? Send us a message and a member of our team will get back to you.
+Contact us here — email us at: info@beinspirednj.com
+Be Inspired NJ
+Email: info@beinspirednj.com
+We appreciate your message and will respond as soon as possible.
+Success state: confirmation message.
+10) OUR LEADERSHIP /our-leadership
+Meet the Founder
+Large portrait IMAGE leadership/latoya 3:4
+Dr. LaToya Pryce
+Founder & President, Be Inspired NJ
+Dr. LaToya Pryce is a leader, educator, speaker, and community advocate committed to creating opportunities that help women grow personally, professionally, and financially.
+Her work throughout her career has centered on a simple principle: people thrive when they are given the opportunity, resources, support, and space to do so.
+That belief became the foundation for Be Inspired NJ.
+LaToya recognized that many women have tremendous potential but may not always have access to the networks, mentors, financial knowledge, professional development, or community resources that can help move an idea or aspiration forward.
+She created Be Inspired NJ to help bridge that gap.
+Through mentorship, leadership development, financial wellness, entrepreneurship education, and community partnerships, her vision is to create an organization where women can access practical resources while also becoming part of a community that encourages them to think bigger about what is possible.
+LaToya brings extensive experience in organizational leadership, employee and community engagement, program development, financial services, and leadership development. She holds a doctorate in leadership and has dedicated much of her professional and community work to helping individuals and organizations create environments where people can succeed.
+For her, Be Inspired NJ is about more than inspiration.
+It is about turning possibility into opportunity—and opportunity into impact.
+A Message From Our Founder
+Pull-quote card:
+I believe there are moments when all someone needs is access—to the right information, the right person, the right opportunity, or simply a space where someone believes in what they can become.
+Be Inspired NJ was created to help build those spaces.
+My hope is that every woman who connects with our organization walks away with something she can use: knowledge, confidence, a relationship, a resource, an opportunity, or even the courage to take her next step.
+And as we grow, I hope the women we serve will reach back and create opportunities for someone else.
+That is how inspiration becomes impact.
+— Dr. LaToya Pryce
+Our Leadership Philosophy
+We believe leadership is not defined by a title.
+Leadership is the willingness to use your experiences, knowledge, influence, and voice to create opportunities for others.
+Our organization is guided by four principles (4 cards):
+Lead with Purpose — Make decisions that remain connected to our mission and the communities we serve.
+Create Access — Help connect women with information, resources, relationships, and opportunities.
+Build Community — Create spaces where people feel welcomed, supported, respected, and valued.
+Multiply Impact — Encourage those we serve to share what they learn, mentor others, and create opportunities within their own communities.
+Board of Directors
+Three additional “coming soon” board slots (portrait placeholders) plus the two known members as real cards linking to bios.
+Help Us Build What's Possible
+Our work grows stronger through community.
+Whether you want to participate in a program, volunteer your talents, become a community partner, or invest in our mission, we invite you to be part of what we're building.
+Buttons: Get Involved · Partner With Us · Support Our Mission (/donate)
+(Original also had “Book Now” — map it to /contact?topic=programs labeled Connect With Us or Book a Conversation, not a random calendar.)
+11) BOARD BIOS
+/board/tatiana-lopez
+Portrait IMAGE board/tatiana 3:4
+Board Member, Be Inspired NJ
+Tatiana Lopez
+Tatiana Lopez is a New Jersey native, financial services professional, and dedicated community advocate with a passion for creating meaningful connections and positive social change.
+With more than a decade of experience in the financial services industry, Tatiana currently serves as a Regional Marketing Coordinator for a credit union, where she supports initiatives that strengthen community relationships, increase engagement, and expand access to financial resources.
+Tatiana’s commitment to service extends well beyond her professional career. She has contributed more than 500 volunteer hours annually and serves on various boards and community organizations focused on advancing social change, strengthening communities, and creating opportunities for others.
+As a Board Member of Be Inspired NJ, Tatiana brings together her experience in financial services, marketing, community engagement, and volunteer leadership to further the organization’s mission of empowering individuals and creating lasting community impact.
+Back to About / Leadership.
+/board/angie-todd
+Portrait IMAGE board/angie 3:4
+Board Member, Be Inspired NJ
+Andreau “Angie” Todd
+Andreau “Angie” Todd is a passionate community advocate whose commitment to service is rooted in creating opportunities, strengthening communities, and helping others thrive.
+A proud Florida native, Angie has been actively involved in community impact efforts focused on social justice, equity, and supporting individuals and families in need. Her hands-on approach to service includes organizing food, toy, and back-to-school drives that provide essential resources and support to local communities.
+Angie also serves on the board of K.I.M. (Keeping It Motivated), an organization dedicated to improving the physical and mental well-being of individuals within the community. Her commitment to service continues through several projects focused on supporting youth in foster care as they prepare to transition into adulthood, with an emphasis on providing the resources, guidance, and encouragement needed to navigate life independently.
+As a Board Member of Be Inspired NJ, Angie brings a deep commitment to advocacy, community service, and empowering others. She believes meaningful change begins with showing up, creating opportunities, and ensuring that those who are often overlooked have the support they need to move forward.
+IMAGE SLOT INVENTORY (implement ALL as PlaceholderImage)
+Keep this list in lib/images.ts with id, aspect, page, and intended subject.
+Home: hero 16:9; who-we-are 1:1 circle; program-mentorship 2:1; program-leadership 2:1; program-financial 2:1; program-entrepreneurship 2:1; impact 3:2
+About: mosaic-1..6 4:3; founder 3:4; tatiana 1:1; angie 1:1
+Programs: hero 16:9; four program 2:1; gallery 4:3 ×4
+Events: hero 21:9; conference 16:9; recap ×3; gallery ×3
+Inspiration index: hero 21:9; six article cards 16:9; three volunteer portraits 1:1; partner logos
+Articles: one 16:9 each
+Get involved: hero 16:9
+Donate: hero 16:9
+Leadership: founder 3:4; three coming-soon 1:1
+Bios: two 3:4
+Logo: header + footer 176×138-ish
+Every placeholder must hold space (never collapse).
+IMPLEMENTATION ORDER
+Scaffold Next.js + Tailwind + fonts + tokens
+Header, Footer, Button, PlaceholderImage, layout
+Content module (lib/content.ts) with nav, programs, event, articles, FAQs
+Home (complete)
+About + leadership + bios
+Programs + contact form component
+Events
+Inspiration index + 6 articles
+Get Involved + FAQ + volunteer form
+Donate
+Contact + 404
+Redirects, metadata (title/description per page), sitemap.ts, robots.ts
+Responsive polish, focus states, form validation, empty states
+README with npm install / npm run dev
+SEO / METADATA
+Title pattern: {Page} | Be Inspired NJ (Home: Be Inspired NJ)
+Default description: Empowering women through education, mentorship, leadership development, financial wellness, and community support in New Jersey.
+OG placeholder image slot (do not fetch remote images).
+ACCEPTANCE CRITERIA
+npm run dev launches with no errors
+Every nav item works; every CTA in this spec lands on a real route
+All pages share header/footer
+Image placeholders occupy the listed aspect ratios
+Mobile nav works
+Forms validate and show success
+Design looks like a premium nonprofit brand: teal + serif + photography slots + dark/light rhythm
+Copy from this prompt is present on the matching pages
+No lorem ipsum except explicitly “Coming soon” regions
+TypeScript builds (npm run build)
+Start coding now. Create the project in this workspace. Do not stop at a homepage mock — finish every route.

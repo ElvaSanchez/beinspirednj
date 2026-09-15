@@ -1,30 +1,18 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import { description } from "@/lib/content";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
+const serif = localFont({ src: "./fonts/playfair.woff2", variable: "--font-serif", weight: "400 900", display: "swap" });
+const sans = localFont({ src: "./fonts/source-sans.woff2", variable: "--font-sans", weight: "200 900", display: "swap" });
+const script = localFont({ src: "./fonts/allura.woff2", variable: "--font-script", weight: "400", display: "swap" });
 export const metadata: Metadata = {
-  title: "Be Inspired NJ | A World of Possibility",
-  description: "Building a brighter, more connected New Jersey through kindness, community, and opportunity. Find your way to make a difference with Be Inspired NJ.",
+  metadataBase: new URL("https://beinspirednj.org"),
+  title: { default: "Be Inspired NJ", template: "%s | Be Inspired NJ" },
+  description,
+  openGraph: { title: "Be Inspired NJ", description, type: "website", locale: "en_US", siteName: "Be Inspired NJ" },
 };
-
-export default function RootLayout({ children }: LayoutProps<"/">) {
-  return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
-    </html>
-  );
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return <html lang="en" data-scroll-behavior="smooth" className={`${serif.variable} ${sans.variable} ${script.variable}`}><body><a className="skip-link" href="#main">Skip to content</a><Header/><main id="main" tabIndex={-1}>{children}</main><Footer/></body></html>;
 }
-

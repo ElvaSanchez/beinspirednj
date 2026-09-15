@@ -1,0 +1,8 @@
+import type { ReactNode } from "react";
+import { copy } from "@/lib/content";
+import { PlaceholderImage } from "./PlaceholderImage";
+export function Section({ children, id, tone = "", className = "" }: { children: ReactNode; id?: string; tone?: string; className?: string }) { return <section id={id} className={`section ${tone} ${className}`}><div className="container">{children}</div></section>; }
+export function Heading({ eyebrow, title, children }: { eyebrow?: string; title: string; children?: ReactNode }) { return <div className="section-heading">{eyebrow && <p className="eyebrow">{eyebrow}</p>}<h2>{title}</h2>{children}</div>; }
+export function Copy({ name }: { name: string }) { return <div className="prose">{copy[name]?.map((text, i) => <p key={i}>{text}</p>)}</div>; }
+export function PageHero({ title, eyebrow, image, children }: { title: string; eyebrow: string; image?: string; children?: ReactNode }) { return <section className="page-hero dark"><div className="container"><p className="eyebrow">{eyebrow}</p><h1>{title}</h1>{children && <div className="hero-description">{children}</div>}{image && <PlaceholderImage id={image} className="inner-hero-image"/>}</div></section>; }
+export function Gallery({ prefix, count, title }: { prefix: string; count: number; title?: string }) { return <Section>{title && <Heading title={title}/>}<div className={`grid grid-${count === 4 ? 4 : 3}`}>{Array.from({ length: count }, (_, i) => <PlaceholderImage key={i} id={`${prefix}-${i + 1}`}/>)}</div></Section>; }
