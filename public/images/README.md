@@ -21,3 +21,8 @@ The supplied logo is installed at `/public/images/brand/logo.ico` and displayed 
 ## About page mosaic
 
 The six supplied images are installed in prompt order: Finding (`mosaic-1.jpg`), Learn (`mosaic-2.jpg`), A Conversation (`mosaic-3.jpg`), A Warm Welcome (`mosaic-4.jpg`), Building an Idea (`mosaic-5.jpg`), and Leadership and Encouragement (`mosaic-6.png`). All paths are under `/public/images/about/`. The hero grid uses 4:3 slots, responsive image sizes, descriptive alt text, and eager loading for its initially visible photos.
+
+The About page Our Leadership portrait uses the supplied /public/ImagesOfBeInspired/Dr.LaToya.png file. Its square aspect ratio, circular shape, and transparent background are preserved.
+
+
+Board member portraits are installed at `/public/images/about/tatiana.png` and `/public/images/about/angie.png`. The shared Board of Directors cards preserve their circular shape and transparent backgrounds on the About and Our Leadership pages.

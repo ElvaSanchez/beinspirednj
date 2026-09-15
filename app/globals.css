@@ -109,6 +109,7 @@ em { font-weight: 400; }
 .placeholder-circle { border-radius: 50%; }
 .placeholder-circle::before { border-radius: 50%; }
 .photo-slot::before { display: none; }
+.photo-slot.founder-portrait { background: transparent; }
 .home-hero { background: var(--deep); color: white; }
 .home-hero-image { display: block; width: 100%; height: auto; }
 .hero-bottom { padding: 18px 55px; display: flex; justify-content: space-between; gap: 16px; font-size: 10px; letter-spacing: .12em; }
@@ -186,6 +187,7 @@ em { font-weight: 400; }
 .value-card h3 { font-size: 27px; }
 .value-card p { color: var(--muted); font-size: 17px; margin: 0; }
 .leadership-cards .eyebrow { margin-top: 25px; }
+.leadership-cards .photo-slot { background: transparent; }
 .leadership-cards h3 { margin-bottom: 12px; }
 .bio-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: 80px; align-items: start; }
 .bio-layout > .placeholder { position: sticky; top: 135px; }
