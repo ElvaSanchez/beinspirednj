@@ -1,14 +1,14 @@
 import { articles, programs } from "./content";
 
-export interface ImageSlot { id: string; aspect: string; page: string; subject: string; path: string; shape?: "rect" | "circle" }
+export interface ImageSlot { id: string; aspect: string; page: string; subject: string; path: string; shape?: "rect" | "circle"; available?: boolean }
 const slot = (id: string, aspect: string, subject: string, shape?: "rect" | "circle"): ImageSlot => ({ id, aspect, subject, shape, page: id.split("/")[0], path: `/images/${id}.jpg` });
 const programSubjects = ["Two professional women in conversation", "Woman presenting at a whiteboard to a small team", "Coins with a rising red ladder — financial growth", "Smiling woman business owner in a plant shop"];
 export const images: ImageSlot[] = [
   slot("brand/logo", "176/138", "Be Inspired NJ butterfly mark — teal, violet, and rose wings"),
-  slot("home/hero", "16/9", "Four diverse women outdoors at golden hour, laughing, arms around each other, one fist raised in joy"),
-  slot("home/who-we-are", "1/1", "Woman with natural hair and a navy blazer, presenting to colleagues", "circle"),
-  ...programs.flatMap((p, i) => [slot(`home/program-${p.id}`, "2/1", programSubjects[i]), slot(`programs/${p.id}`, "2/1", programSubjects[i])]),
-  slot("home/impact", "3/2", "Chalkboard with a question mark — curiosity and possibility"),
+  { ...slot("home/hero", "1537/1023", "Four women outdoors at golden hour, laughing together, one fist raised in joy"), path: "/images/home/hero.png" },
+  { ...slot("home/who-we-are", "1/1", "Two women greeting one another warmly in a sunlit community space", "circle"), available: true },
+  ...programs.flatMap((p, i) => [{ ...slot(`home/program-${p.id}`, "2/1", ["Two women sharing a mentorship conversation beside a sunlit window", "A woman leading a discussion with workshop participants", "A woman reviewing her budget with a planner and calculator", "A woman arranging a bouquet in a neighborhood flower studio"][i]), available: true }, slot(`programs/${p.id}`, "2/1", programSubjects[i])]),
+  { ...slot("home/impact", "3/2", "A woman helping another woman learn a digital skill on a laptop"), available: true },
   ...["Woman speaking on stage from behind, in a spotlight", "Woman with a lanyard presenting in front of colorful slides", "Two women in conversation in lounge chairs before an audience", "Woman with a lanyard in front of a giant WELCOME! wall", "Two women collaborating at a table with a laptop", "Woman in a red blazer speaking on stage, smiling"].map((subject, i) => slot(`about/mosaic-${i + 1}`, "4/3", subject)),
   slot("about/founder", "3/4", "Portrait of Dr. LaToya Pryce, Founder"),
   slot("about/tatiana", "1/1", "Portrait of Tatiana Lopez, Board Member"),

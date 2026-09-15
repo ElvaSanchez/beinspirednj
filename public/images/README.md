@@ -1,7 +1,18 @@
 # Image drop-in inventory
 
-All image slots intentionally render labeled placeholders. No photography or original logo is included.
+The homepage hero uses the supplied image at `/public/images/home/hero.png`, rendered with `next/image` in `app/page.tsx`. Its embedded wordmark and tagline are preserved without duplicate visible text. The full image scales proportionally on every screen size so its lettering and faces are not cropped. Accessible heading and tagline text remain available to screen readers.
 
-`lib/images.ts` is the complete inventory: ID, page, aspect ratio, intended subject, and replacement path. For example, `home/hero` maps to `/public/images/home/hero.jpg`. Add approved images at those paths, then update `components/PlaceholderImage.tsx` to render `next/image` when an asset is available, preserving the wrapper ratio and alternative text. Until that change, placing files here does not enable real photography automatically.
+The six supporting homepage images are also installed:
+
+- Who We Are: `home/who-we-are.jpg`
+- Mentorship: `home/program-mentorship.jpg`
+- Leadership: `home/program-leadership.jpg`
+- Financial Wellness: `home/program-financial.jpg`
+- Entrepreneurship: `home/program-entrepreneurship.jpg`
+- Our Impact: `home/impact.jpg`
+
+These slots have `available: true` in `lib/images.ts` and render through `next/image`. The circular portrait, alternating program layout, and section aspect ratios are preserved. Other image slots remain placeholders.
+
+`lib/images.ts` is the complete inventory: ID, page, aspect ratio, intended subject, and replacement path. The active `home/hero` asset maps to `/public/images/home/hero.png`. Add approved images at those paths, then set `available: true` on the corresponding inventory entry and update its subject to describe the image. Until that change, placing files here does not enable real photography automatically.
 
 The logo slot is `/public/images/brand/logo.jpg`. The local social sharing placeholder is rendered by `app/opengraph-image.tsx`; replace it with the approved 1200 × 630 asset when ready.

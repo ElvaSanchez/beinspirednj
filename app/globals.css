@@ -107,18 +107,10 @@ em { font-weight: 400; }
 .placeholder-caption small { font-size: 8px; letter-spacing: .18em; color: #c2d6cb; }
 .placeholder-circle { border-radius: 50%; }
 .placeholder-circle::before { border-radius: 50%; }
-.home-hero { position: relative; color: white; }
-.home-hero > .placeholder { min-height: 70vh; max-height: 850px; background: radial-gradient(ellipse at 75% 12%,#66827488,transparent 60%),linear-gradient(125deg,#213e39,#3d6057 52%,#283d37); }
-.home-hero > .placeholder::before { inset: 28px; }
-.home-hero > .placeholder .placeholder-caption { inset: auto 0 80px auto; width: 285px; padding: 20px 42px; opacity: .9; }
-.home-hero > .placeholder .placeholder-caption svg { width: 22px; height: 22px; }
-.home-hero > .placeholder .placeholder-caption span { font-size: 11px; }
-.home-hero-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 65px 28px 120px; pointer-events: none; }
-.home-hero-overlay .eyebrow { color: #d3e2d7; letter-spacing: .23em; font-size: 11px; }
-.home-hero h1 { font-family: var(--font-script),cursive; font-weight: 400; font-size: clamp(85px,10.5vw,156px); margin: 10px 0 12px; line-height: 1; letter-spacing: -.02em; color: white; }
-.hero-tagline { font-size: clamp(13px,1.15vw,17px); font-weight: 500; text-transform: uppercase; letter-spacing: .2em; line-height: 1.9; }
-.hero-rule { width: 45px; height: 1px; background: #d5e7d5; margin-top: 15px; }
-.hero-bottom { position: absolute; bottom: 35px; left: 55px; right: 55px; display: flex; justify-content: space-between; font-size: 10px; letter-spacing: .12em; }
+.photo-slot::before { display: none; }
+.home-hero { background: var(--deep); color: white; }
+.home-hero-image { display: block; width: 100%; height: auto; }
+.hero-bottom { padding: 18px 55px; display: flex; justify-content: space-between; gap: 16px; font-size: 10px; letter-spacing: .12em; }
 .hero-bottom a { color: white; }
 .hero-bottom a span { margin-left: 20px; }
 .home-intro { padding: 76px 0; }
@@ -275,7 +267,6 @@ summary::-webkit-details-marker { display: none; }
 .gift-card > a { font-size: 13px; margin-top: 14px; text-decoration: underline; }
 .custom-gift { display: flex; align-items: flex-end; justify-content: center; gap: 25px; margin: 40px 0 20px; }
 .custom-gift .field { max-width: 230px; }
-@media (min-width: 1600px) { .home-hero > .placeholder { min-height: 760px; } }
 @media (max-width: 1190px) {
   .container { width: calc(100% - 64px); }
   .desktop-nav { gap: 14px; font-size: 13px; }
@@ -295,7 +286,6 @@ summary::-webkit-details-marker { display: none; }
   .brand { font-size: 24px; }
   .placeholder.logo-slot { width: 58px; }
   .section { padding: 65px 0; }
-  .home-hero > .placeholder { min-height: 620px; }
   .grid-3,.grid-4 { grid-template-columns: repeat(2,minmax(0,1fr)); }
   .program-row { gap: 35px; margin-bottom: 45px; padding-bottom: 45px; }
   .program-row .placeholder-caption { padding: 15px; gap: 8px; }
@@ -323,17 +313,7 @@ summary::-webkit-details-marker { display: none; }
   .brand { font-size: 22px; }
   .placeholder.logo-slot { width: 52px; }
   .brand-sub { font-size: 8px; }
-  .home-hero > .placeholder { min-height: 640px; max-height: none; }
-  .home-hero > .placeholder::before { inset: 15px; }
-  .home-hero h1 { font-size: clamp(50px,14vw,100px); white-space: nowrap; }
-  .home-hero-overlay { padding: 45px 24px 150px; }
-  .home-hero-overlay .eyebrow { max-width: 270px; font-size: 9px; line-height: 1.8; margin-bottom: 25px; }
-  .hero-tagline { font-size: 11px; letter-spacing: .14em; }
-  .home-hero > .placeholder .placeholder-caption { width: 260px; left: 50%; right: auto; transform: translateX(-50%); bottom: 63px; padding: 10px; gap: 5px; }
-  .home-hero > .placeholder .placeholder-caption svg { width: 16px; height: 16px; }
-  .home-hero > .placeholder .placeholder-caption span { font-size: 9px; max-width: 220px; }
-  .home-hero > .placeholder .placeholder-caption small { font-size: 6px; }
-  .hero-bottom { left: 30px; right: 30px; bottom: 25px; justify-content: center; font-size: 9px; }
+  .hero-bottom { padding: 16px 20px; justify-content: center; font-size: 11px; }
   .hero-bottom > span { display: none; }
   .home-intro { padding: 55px 0; }
   .home-intro h2 { font-size: 37px; }

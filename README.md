@@ -28,7 +28,7 @@ Next.js 16.3.5, React 19, strict TypeScript, and Tailwind CSS 4. Playfair Displa
 - `brief.txt`: supplied specification, normalized to UTF-8 and without empty lines.
 - `scripts/build-content.mjs`: reproduces the content module from the supplied brief.
 
-All photos and logos are intentionally labeled placeholders. No original or stock photos are downloaded, hotlinked, or embedded. See `public/images/README.md` for replacement instructions. Social previews use the locally rendered placeholder in `app/opengraph-image.tsx`.
+The homepage hero uses the user-supplied image at `public/images/home/hero.png`. The six supporting homepage sections also use supplied images, enabled in `lib/images.ts`. Other photo slots and logos remain labeled placeholders. See `public/images/README.md` for replacement instructions. Social previews use the locally rendered placeholder in `app/opengraph-image.tsx`.
 
 ## Forms and giving
 

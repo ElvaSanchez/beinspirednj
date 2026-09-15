@@ -1,3 +1,5 @@
+import Image from "next/image";
+import heroImage from "@/public/images/home/hero.png";
 import { Button } from "@/components/Button";
 import { PlaceholderImage } from "@/components/PlaceholderImage";
 import { Copy, Heading, Section } from "@/components/Section";
@@ -6,7 +8,12 @@ import { ArticleCard } from "@/components/ArticleCard";
 import { Newsletter } from "@/components/Forms";
 import { articles, event, programs } from "@/lib/content";
 export default function Home() { return <>
-  <section className="home-hero"><PlaceholderImage id="home/hero"/><div className="home-hero-overlay"><p className="eyebrow">Rooted in New Jersey. Open to possibility.</p><h1>Be Inspired NJ</h1><p className="hero-tagline">Empowering women.<br/>Strengthening communities.<br/>Creating possibilities.</p><span className="hero-rule"/></div><div className="hero-bottom"><span>EDUCATION · MENTORSHIP · COMMUNITY</span><a href="#opportunity">Discover what’s possible <span aria-hidden="true">↓</span></a></div></section>
+  <section className="home-hero" aria-labelledby="home-title">
+    <h1 id="home-title" className="sr-only">Be Inspired NJ</h1>
+    <p className="sr-only">Empowering women. Strengthening communities. Creating possibilities.</p>
+    <Image src={heroImage} alt="Four women laughing together outdoors at golden hour, one raising her fist in celebration." className="home-hero-image" sizes="100vw" preload />
+    <div className="hero-bottom"><span>EDUCATION · MENTORSHIP · COMMUNITY</span><a href="#opportunity">Discover what’s possible <span aria-hidden="true">↓</span></a></div>
+  </section>
   <Section id="opportunity" className="center home-intro"><p className="eyebrow">Inspiration is just the beginning</p><h2>Every woman deserves<br/>access to <em>opportunity.</em></h2><Copy name="homeIntro"/></Section>
   <div className="cta-band"><div className="container"><p>Your next step starts here.</p><div className="actions"><Button href="/programs" variant="secondary">Explore Our Programs</Button><Button href="/get-involved" variant="secondary">Get Involved</Button></div></div></div>
   <Section><div className="split who-section"><div className="portrait-wrap"><PlaceholderImage id="home/who-we-are"/><span className="portrait-note">Possibility begins<br/><em>with connection.</em></span></div><div><Heading eyebrow="Who We Are" title="Inspiration can open the door. Opportunity creates lasting change."/><Copy name="who"/><Button href="/about" variant="ghost">Get to Know Be Inspired NJ</Button></div></div></Section>
