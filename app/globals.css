@@ -79,6 +79,7 @@ em { font-weight: 400; }
 .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 28px; min-height: 100px; }
 .brand { display: flex; align-items: center; gap: 12px; color: var(--deep); font-family: var(--font-serif),Georgia,serif; font-size: 25px; line-height: 1.15; flex-shrink: 0; }
 .brand:hover { text-decoration: none; }
+.brand-logo { width: 76px; height: auto; object-fit: contain; flex-shrink: 0; }
 .brand-sub { display: block; font-family: var(--font-sans),sans-serif; font-size: 9px; font-weight: 600; letter-spacing: .27em; margin-top: 8px; }
 .placeholder.logo-slot { width: 62px; flex-shrink: 0; border: 1px solid #9ab8b2; background: #e6eeea !important; color: var(--deep) !important; }
 .brand > span { white-space: nowrap; }
@@ -311,6 +312,7 @@ summary::-webkit-details-marker { display: none; }
   .announcement > span { display: none; }
   .header-inner { min-height: 78px; }
   .brand { font-size: 22px; }
+  .brand-logo { width: 58px; height: auto; }
   .placeholder.logo-slot { width: 52px; }
   .brand-sub { font-size: 8px; }
   .hero-bottom { padding: 16px 20px; justify-content: center; font-size: 11px; }

@@ -4,7 +4,7 @@ export interface ImageSlot { id: string; aspect: string; page: string; subject: 
 const slot = (id: string, aspect: string, subject: string, shape?: "rect" | "circle"): ImageSlot => ({ id, aspect, subject, shape, page: id.split("/")[0], path: `/images/${id}.jpg` });
 const programSubjects = ["Two professional women in conversation", "Woman presenting at a whiteboard to a small team", "Coins with a rising red ladder — financial growth", "Smiling woman business owner in a plant shop"];
 export const images: ImageSlot[] = [
-  slot("brand/logo", "176/138", "Be Inspired NJ butterfly mark — teal, violet, and rose wings"),
+  { ...slot("brand/logo", "256/201", "Be Inspired NJ logo"), path: "/images/brand/logo.ico" },
   { ...slot("home/hero", "1537/1023", "Four women outdoors at golden hour, laughing together, one fist raised in joy"), path: "/images/home/hero.png" },
   { ...slot("home/who-we-are", "1/1", "Two women greeting one another warmly in a sunlit community space", "circle"), available: true },
   ...programs.flatMap((p, i) => [{ ...slot(`home/program-${p.id}`, "2/1", ["Two women sharing a mentorship conversation beside a sunlit window", "A woman leading a discussion with workshop participants", "A woman reviewing her budget with a planner and calculator", "A woman arranging a bouquet in a neighborhood flower studio"][i]), available: true }, slot(`programs/${p.id}`, "2/1", programSubjects[i])]),

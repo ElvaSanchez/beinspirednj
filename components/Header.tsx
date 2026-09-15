@@ -3,9 +3,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import { nav } from "@/lib/content";
-import { PlaceholderImage } from "./PlaceholderImage";
+import Image from "next/image";
 
-export function Brand() { return <Link href="/" className="brand" aria-label="Be Inspired NJ home"><PlaceholderImage id="brand/logo" className="logo-slot"/><span>Be Inspired<span className="brand-sub">NEW JERSEY</span></span></Link>; }
+export function Brand() { return <Link href="/" className="brand" aria-label="Be Inspired NJ home"><Image src="/images/brand/logo.ico" alt="Be Inspired NJ logo" width={256} height={201} className="brand-logo" unoptimized/><span>Be Inspired<span className="brand-sub">NEW JERSEY</span></span></Link>; }
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);

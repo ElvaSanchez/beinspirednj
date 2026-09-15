@@ -15,4 +15,4 @@ These slots have `available: true` in `lib/images.ts` and render through `next/i
 
 `lib/images.ts` is the complete inventory: ID, page, aspect ratio, intended subject, and replacement path. The active `home/hero` asset maps to `/public/images/home/hero.png`. Add approved images at those paths, then set `available: true` on the corresponding inventory entry and update its subject to describe the image. Until that change, placing files here does not enable real photography automatically.
 
-The logo slot is `/public/images/brand/logo.jpg`. The local social sharing placeholder is rendered by `app/opengraph-image.tsx`; replace it with the approved 1200 × 630 asset when ready.
+The supplied logo is installed at `/public/images/brand/logo.ico` and displayed by the shared `Brand` component in the header and footer. The same file is installed at `app/favicon.ico` for the browser tab icon. The local social sharing placeholder is rendered by `app/opengraph-image.tsx`; replace it with the approved 1200 × 630 asset when ready.
