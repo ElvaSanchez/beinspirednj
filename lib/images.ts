@@ -2,19 +2,19 @@ import { articles, programs } from "./content";
 
 export interface ImageSlot { id: string; aspect: string; page: string; subject: string; path: string; shape?: "rect" | "circle"; available?: boolean }
 const slot = (id: string, aspect: string, subject: string, shape?: "rect" | "circle"): ImageSlot => ({ id, aspect, subject, shape, page: id.split("/")[0], path: `/images/${id}.jpg` });
-const programSubjects = ["Two professional women in conversation", "Woman presenting at a whiteboard to a small team", "Coins with a rising red ladder — financial growth", "Smiling woman business owner in a plant shop"];
+const programSubjects = ["A young woman discussing her goals with a mentor in a library", "A young woman guiding a collaborative leadership exercise", "An educator reviewing financial worksheets with two women", "A young entrepreneur and her mentor reviewing a handmade tote and packaging"];
 export const images: ImageSlot[] = [
   { ...slot("brand/logo", "256/201", "Be Inspired NJ logo"), path: "/images/brand/logo.ico" },
   { ...slot("home/hero", "1537/1023", "Four women outdoors at golden hour, laughing together, one fist raised in joy"), path: "/images/home/hero.png" },
   { ...slot("home/who-we-are", "1/1", "Two women greeting one another warmly in a sunlit community space", "circle"), available: true },
-  ...programs.flatMap((p, i) => [{ ...slot(`home/program-${p.id}`, "2/1", ["Two women sharing a mentorship conversation beside a sunlit window", "A woman leading a discussion with workshop participants", "A woman reviewing her budget with a planner and calculator", "A woman arranging a bouquet in a neighborhood flower studio"][i]), available: true }, slot(`programs/${p.id}`, "2/1", programSubjects[i])]),
+  ...programs.flatMap((p, i) => [{ ...slot(`home/program-${p.id}`, "2/1", ["Two women sharing a mentorship conversation beside a sunlit window", "A woman leading a discussion with workshop participants", "A woman reviewing her budget with a planner and calculator", "A woman arranging a bouquet in a neighborhood flower studio"][i]), available: true }, { ...slot(`programs/${p.id}`, "2/1", programSubjects[i]), available: true }]),
   { ...slot("home/impact", "3/2", "A woman helping another woman learn a digital skill on a laptop"), available: true },
   ...["A young woman speaking to an audience of women from different generations", "A young woman sharing an idea beside a workshop pinboard", "A young woman and an older woman having a thoughtful conversation before an audience", "A young volunteer welcoming an attendee with a name badge", "Three young women collaborating on a project at a shared table", "A woman in a brick-red blazer encouraging a participant during a community discussion"].map((subject, i) => ({ ...slot(`about/mosaic-${i + 1}`, "4/3", subject), available: true, path: `/images/about/mosaic-${i + 1}.${i === 5 ? "png" : "jpg"}` })),
   { ...slot("about/founder", "1/1", "Dr. LaToya Pryce, Founder of Be Inspired NJ", "circle"), path: "/ImagesOfBeInspired/Dr.LaToya.png", available: true },
   { ...slot("about/tatiana", "1/1", "Tatiana Lopez, Board Member of Be Inspired NJ", "circle"), path: "/images/about/tatiana.png", available: true },
   { ...slot("about/angie", "1/1", "Andreau ‘Angie’ Todd, Board Member of Be Inspired NJ", "circle"), path: "/images/about/angie.png", available: true },
-  slot("programs/hero", "16/9", "Woman presenting to a diverse seated group, viewed from behind"),
-  ...Array.from({ length: 4 }, (_, i) => slot(`programs/gallery-${i + 1}`, "4/3", `Program and workshop photography ${i + 1}`)),
+  { ...slot("programs/hero", "16/9", "Women from different generations participating in a sunlit community workshop"), available: true },
+  ...["Three women making a new connection during a workshop break", "A woman learning a digital skill with guidance at a laptop", "A woman reflecting and writing in her notebook after a workshop", "Women assembling educational resource packets together"].map((subject, i) => ({ ...slot(`programs/gallery-${i + 1}`, "4/3", subject), available: true })),
   slot("events/hero", "21/9", "Women smiling and clapping — community energy"),
   slot("events/legacy-collective", "16/9", "The Legacy Collective Conference — leadership gathering"),
   ...Array.from({ length: 3 }, (_, i) => slot(`events/recap-${i + 1}`, "4/3", "Photos coming after October 15, 2026")),

@@ -26,3 +26,8 @@ The About page Our Leadership portrait uses the supplied /public/ImagesOfBeInspi
 
 
 Board member portraits are installed at `/public/images/about/tatiana.png` and `/public/images/about/angie.png`. The shared Board of Directors cards preserve their circular shape and transparent backgrounds on the About and Our Leadership pages.
+
+
+## Programs page images
+
+All nine supplied photos are installed under `/public/images/programs/`: `hero.jpg`, `mentorship.jpg`, `leadership.jpg`, `financial.jpg`, `entrepreneurship.jpg`, and `gallery-1.jpg` through `gallery-4.jpg`. Gallery order: Making a New Connection, Practicing a Practical Skill, Reflecting, Creating Something. Each inventory entry includes descriptive alt text. The hero loads eagerly; section and gallery photos load lazily.
