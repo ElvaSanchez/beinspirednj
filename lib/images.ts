@@ -39,7 +39,7 @@ export const images: ImageSlot[] = [
   { ...slot("involved/volunteer", "4/3", "Three young women packing notebooks and pencils into canvas bags for a community workshop"), path: "/ImagesOfBeInspired/Volunteer.png", available: true },
   { ...slot("involved/expertise", "4/3", "A woman helping a young adult learn a computer skill in a library"), path: "/ImagesOfBeInspired/ShareYourExpertise.png", available: true },
   { ...slot("involved/partner", "4/3", "Three women discussing a community collaboration in a creative studio"), path: "/ImagesOfBeInspired/PartnerWithUs.png", available: true },
-  slot("donate/hero", "16/9", "Open hands holding a red heart — care and giving"),
+  { ...slot("donate/hero", "16/9", "A young woman presenting her creative project to an attentive group in a sunlit learning space"), path: "/ImagesOfBeInspired/DonateHero.png", available: true },
   slot("leadership/latoya", "3/4", "Portrait of Dr. LaToya Pryce, Founder & President"),
   ...Array.from({ length: 3 }, (_, i) => slot(`leadership/coming-soon-${i + 1}`, "1/1", "Board member portrait — coming soon")),
   slot("board/tatiana", "3/4", "Portrait of Tatiana Lopez"),
