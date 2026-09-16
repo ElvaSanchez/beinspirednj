@@ -3,6 +3,14 @@ import { articles, programs } from "./content";
 export interface ImageSlot { id: string; aspect: string; page: string; subject: string; path: string; shape?: "rect" | "circle"; available?: boolean }
 const slot = (id: string, aspect: string, subject: string, shape?: "rect" | "circle"): ImageSlot => ({ id, aspect, subject, shape, page: id.split("/")[0], path: `/images/${id}.jpg` });
 const programSubjects = ["A young woman discussing her goals with a mentor in a library", "A young woman guiding a collaborative leadership exercise", "An educator reviewing financial worksheets with two women", "A young entrepreneur and her mentor reviewing a handmade tote and packaging"];
+const articleImages: Record<string, { path: string; subject: string }> = {
+  "ready-to-lead": { path: "/ImagesOfBeInspired/FiveSings.png", subject: "A young woman guiding a group discussion around a table" },
+  "your-next-chapter": { path: "/YourNextChapter.png", subject: "A young woman writing in a notebook beside her laptop in a sunlit workspace" },
+  "financial-wellness": { path: "/ImagesOfBeInspired/FinantialWellness.png", subject: "Two women reviewing financial paperwork with a notebook and calculator" },
+  "power-of-community": { path: "/ImagesOfBeInspired/ThePowerOfCommunity.png", subject: "Women from different generations connecting outside a community center" },
+  "starting-a-business": { path: "/ThinkingAboutStarting.png", subject: "Two women reviewing fabric samples and business planning notes in a creative studio" },
+  "protecting-your-peace": { path: "/ImagesOfBeInspired/ProtectingYourPeace.png", subject: "A young woman resting with a warm drink beside a window and a closed laptop" },
+};
 export const images: ImageSlot[] = [
   { ...slot("brand/logo", "256/201", "Be Inspired NJ logo"), path: "/images/brand/logo.ico" },
   { ...slot("home/hero", "1537/1023", "Four women outdoors at golden hour, laughing together, one fist raised in joy"), path: "/images/home/hero.png" },
@@ -23,8 +31,8 @@ export const images: ImageSlot[] = [
   { ...slot("events/gallery-1", "4/3", "An attendee receiving a warm welcome and a badge at the registration table"), path: "/ImagesOfBeInspired/WarmWelcome.png", available: true },
   { ...slot("events/gallery-2", "4/3", "Three women talking over coffee at a networking breakfast"), path: "/NetworkingBreakfast.png", available: true },
   { ...slot("events/gallery-3", "4/3", "Women from different generations smiling and talking in a conference foyer"), path: "/ImagesOfBeInspired/ConnectionAcrossGeneration.png", available: true },
-  slot("inspiration/hero", "21/9", "Women sharing ideas, resources, and stories"),
-  ...articles.flatMap(a => [slot(`inspiration/${a.slug}`, "16/9", a.title), slot(a.image, "16/9", a.title)]),
+  { ...slot("inspiration/hero", "21/9", "A young woman reflecting and writing in a notebook at a sunlit desk"), path: "/ImagesOfBeInspired/inspiration-resources-hero.png", available: true },
+  ...articles.flatMap(a => [`inspiration/${a.slug}`, a.image].map(id => ({ ...slot(id, "16/9", a.title), ...articleImages[a.slug], available: Boolean(articleImages[a.slug]) }))),
   ...Array.from({ length: 3 }, (_, i) => slot(`inspiration/volunteer-${i + 1}`, "1/1", "Volunteer portrait — coming soon", "circle")),
   ...Array.from({ length: 4 }, (_, i) => slot(`inspiration/partner-${i + 1}`, "2/1", "Community partner logo — coming soon")),
   slot("involved/hero", "16/9", "Two women in VOLUNTEER t-shirts outdoors, smiling, one handing a water bottle"),
